@@ -12,7 +12,7 @@
 
 body {
   font-size: 10px;
-  background: rgb(149,194,215);
+  background: rgb(73,148,169);
 }
 a {
   text-decoration: none;
@@ -29,8 +29,8 @@ a {
   display: block;
 }
 .thumbnail-title {
-  background: rgb(96, 125, 139);
-  color: rgb(202,238,255);
+  color: rgb(46,92,105);
+  background: rgb(107,215,245);
   display: block;
   margin: 0;
   padding: 4px 10px;

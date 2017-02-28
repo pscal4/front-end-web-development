@@ -3,6 +3,8 @@
   var App = window.App;
   var Truck = App.Truck;
   var DataStore = App.DataStore;
+  var myOtherTruck = new Truck('kit',new DataStore());
   var myTruck= new Truck('ncc-1701',new DataStore());
   window.myTruck = myTruck;
+  window.myOtherTruck = myOtherTruck;
 })(window);

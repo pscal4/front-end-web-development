@@ -15,8 +15,9 @@
         }
     }
 
-    // Note that this is outside for the FormHandler function (constructor)
-    FormHandler.prototype.addSubmitHandler = function(fn) {
+    // This is thea ddSubmitHandler with the submit handler as anonymous
+    // as shown in the book
+    FormHandler.prototype.origaddSubmitHandler = function(fn) {
         console.log('Setting submit handler for form');
         this.$formElement.on('submit', function(event) {
             event.preventDefault();
@@ -32,6 +33,31 @@
             this.elements[0].focus();
         });
     };
+
+    // I am trying to refactor so that it calls a named function on
+    // the FormHandler. The part that is difficult is passing in the "fn"
+    // parameter.
+    FormHandler.prototype.addSubmitHandler = function(fn) {
+        console.log('Setting submit handler for form');
+        this.$formElement.on('submit', {createOrder: fn }, this.submitForm);
+    };
+
+    FormHandler.prototype.submitForm = function(event, fn) {
+        console.log("listener");
+        event.preventDefault();
+
+        var data = {};
+        $(this).serializeArray().forEach(function(item) {
+            data[item.name] = item.value;
+            console.log(item.name + ' is ' + item.value);
+        });
+        console.log(data);
+        console.log('fn is ' + event.data.createOrder);
+        event.data.createOrder(data);
+        this.reset();
+        this.elements[0].focus();
+    }
+
     App.FormHandler = FormHandler;
     window.App = App;
 })(window);

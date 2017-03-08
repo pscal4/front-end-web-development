@@ -32,6 +32,17 @@
             this.elements[0].focus();
         });
     };
+    // Note:  This event does not occur on the form Reset
+    FormHandler.prototype.AddSliderChangeHandler = function() {
+      var SLIDER_SELECTOR = '#strengthLevel';
+      $(SLIDER_SELECTOR).on('change', function(event) {
+        $('#sliderValue').html($(this).val());
+      });
+      // Set the slider value on the form Reset too
+      this.$formElement.on('reset', function(event){
+        $('#sliderValue').html('50');
+      });
+  };
     App.FormHandler = FormHandler;
     window.App = App;
 })(window);
